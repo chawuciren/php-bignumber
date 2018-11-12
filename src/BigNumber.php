@@ -258,6 +258,13 @@ class BigNumber
         return false;
     }
 
+    /**
+     * @brief 判断当前数值是否大于number值
+     *
+     * @param $number String/BigNumber 参与判断的右值
+     *
+     * @return Bool true:大于; false:不大于
+     */
     public function egt($number = '0')
     {
         $number = $this->numberToString($number);
@@ -282,24 +289,6 @@ class BigNumber
         $comp   = bccomp($this->numberValue, $number, $this->numberScale);
 
         if ($comp === -1) {
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * @brief 判断当前数值是否大于number值
-     *
-     * @param $number String/BigNumber 参与判断的右值
-     *
-     * @return Bool true:大于; false:不大于
-     */
-    public function egt($number = '0')
-    {
-        $number = $this->numberToString($number);
-
-        if ($this->eq($number) || $this->gt($number)) {
             return true;
         }
 
