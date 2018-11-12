@@ -3,16 +3,17 @@
     "description": "PHP BigNumber",
     "authors": [
         {
-            "name": "chawuciren <413112589@qq.com>"
+            "name": "chawuciren",
+            "email": "413112589@qq.com"
         }
     ],
     "license": "MIT",
     "require": {
-        "php": ">=5.5"
+        "php": ">=5.3"
     },
     "autoload": {
         "psr-4": {
-            "chawuciren\\bignumber\\": "src/"
+            "chawuciren\\": "src/"
         }
     }
 }
