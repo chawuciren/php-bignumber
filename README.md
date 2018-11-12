@@ -4,6 +4,8 @@
 
 ###  安装方式
 
+---
+
 首先请确保你的 PHP 已经安装并支持 BC Math 扩展，如果不支持，具体安装方式参照官网：http://php.net/manual/en/bc.installation.php
 
 查看方式：
@@ -17,17 +19,24 @@
 
 则表示 BC Math 可以使用
 
+---
 
-##### 1.composer
+<br>
+<br>
+
+#### 1.composer
 
 	composer require chawuciren/bignumber
 
-##### 2.include
+#### 2.include
 直接下载源码，引入 src/BigNumber.php
 
 <br>
+<br>
 
 ### 开始使用
+
+---
 
 ##### 1.使用 new 语句
 
@@ -43,8 +52,11 @@
 	$number->valueOf('0.002', 3);
 
 <br>
+<br>
 
 ### 方法列表
+
+---
 
 #### 1.valueOf
 
