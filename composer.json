@@ -1,6 +1,7 @@
 {
     "name": "chawuciren/bignumber",
     "description": "PHP BigNumber",
+    "type": "library",
     "authors": [
         {
             "name": "chawuciren",
