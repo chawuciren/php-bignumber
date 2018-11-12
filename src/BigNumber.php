@@ -1,5 +1,5 @@
 <?php
-namespace chawuciren\bignumber;
+namespace chawuciren;
 
 class BigNumber
 {
