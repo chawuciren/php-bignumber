@@ -4,7 +4,19 @@
 
 ###  安装方式
 
----
+首先请确保你的 PHP 已经安装并支持 BC Math 扩展，如果不支持，具体安装方式参照官网：http://php.net/manual/en/bc.installation.php
+
+查看方式：
+
+	php -info | grep bcmath
+
+如果能够看到输出
+
+	bcmath
+	bcmath.scale => 0 => 0
+
+则表示 BC Math 可以使用
+
 
 ##### 1.composer
 
@@ -16,8 +28,6 @@
 <br>
 
 ### 开始使用
-
----
 
 ##### 1.使用 new 语句
 
@@ -35,8 +45,6 @@
 <br>
 
 ### 方法列表
-
----
 
 #### 1.valueOf
 
