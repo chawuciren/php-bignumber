@@ -259,7 +259,7 @@ class BigNumber
     }
 
     /**
-     * @brief 判断当前数值是否大于number值
+     * @brief 判断当前数值是否大于或等于number值
      *
      * @param $number String/BigNumber 参与判断的右值
      *
@@ -296,7 +296,7 @@ class BigNumber
     }
 
     /**
-     * @brief 判断当前数值是否小于number值
+     * @brief 判断当前数值是否小于或等于number值
      *
      * @param $number String/BigNumber 参与判断的右值
      *

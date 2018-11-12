@@ -234,6 +234,107 @@ PHP 中的整型大小和平台有关，通常最大值是二十亿，64位平�
 
 <br>
 
+#### 10.sqrt
+
+取当前数值的平方根
+
+##### 参数:
+
+无
+
+##### 返回值: BigNumber(当前实例)
+
+##### 示例:
+
+	$number = new \chawuciren\BigNumber('16');
+	$number->sqrt();
+	var_dump($number->value()); //string(1) "4"
+
+<br>
+
+#### 11.eq
+
+判断当前数值是否等于number值
+
+##### 参数:
+
+| 参数名 | 类型 | 说明 |
+|--|--|--|
+| number | String/BigNumber | 参与判断的右值 |
+
+
+##### 返回值: Bool (true:相等; false:不相等)
+
+##### 示例:
+
+	$number = new \chawuciren\BigNumber('0.00000000000000000001', 20);
+	$number2 = new \chawuciren\BigNumber('0.00000000000000000001', 20);
+	var_dump($number->eq($number2)); //bool(true)
+
+<br>
+
+#### 12.gt
+
+判断当前数值是否大于number值
+
+##### 参数:
+
+| 参数名 | 类型 | 说明 |
+|--|--|--|
+| number | String/BigNumber | 参与判断的右值 |
+
+
+##### 返回值: Bool (true:大于; false:不大于)
+
+##### 示例:
+
+	$number = new \chawuciren\BigNumber('0.00000000000000000002', 20);
+	$number2 = new \chawuciren\BigNumber('0.00000000000000000001', 20);
+	var_dump($number->gt($number2)); //bool(true)
+
+<br>
+
+#### 13.egt
+
+判断当前数值是否大于或等于number值
+
+##### 参数:
+
+| 参数名 | 类型 | 说明 |
+|--|--|--|
+| number | String/BigNumber | 参与判断的右值 |
+
+
+##### 返回值: Bool (true:大于或等于; false:不大于且不等于)
+
+##### 示例:
+
+	$number = new \chawuciren\BigNumber('0.00000000000000000002', 20);
+	$number2 = new \chawuciren\BigNumber('0.00000000000000000001', 20);
+	var_dump($number->egt($number2)); //bool(true)
+
+<br>
+
+#### 14.lt
+
+判断当前数值是否小于number值
+
+##### 参数:
+
+| 参数名 | 类型 | 说明 |
+|--|--|--|
+| number | String/BigNumber | 参与判断的右值 |
+
+
+##### 返回值: Bool (true:小于; false:不小于)
+
+##### 示例:
+
+	$number = new \chawuciren\BigNumber('0.00000000000000000002', 20);
+	$number2 = new \chawuciren\BigNumber('0.00000000000000000001', 20);
+	var_dump($number->lt($number2)); //bool(true)
+
+<br>
 未完待续...
 
 
