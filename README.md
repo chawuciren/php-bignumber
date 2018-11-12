@@ -332,9 +332,27 @@ PHP 中的整型大小和平台有关，通常最大值是二十亿，64位平�
 
 	$number = new \chawuciren\BigNumber('0.00000000000000000002', 20);
 	$number2 = new \chawuciren\BigNumber('0.00000000000000000001', 20);
-	var_dump($number->lt($number2)); //bool(true)
+	var_dump($number->lt($number2)); //bool(false)
 
 <br>
-未完待续...
+
+#### 15.elt
+
+判断当前数值是否小于或等于number值
+
+##### 参数:
+
+| 参数名 | 类型 | 说明 |
+|--|--|--|
+| number | String/BigNumber | 参与判断的右值 |
 
 
+##### 返回值: Bool (true:小于或等于; false:不小于且不等于)
+
+##### 示例:
+
+	$number = new \chawuciren\BigNumber('0.00000000000000000002', 20);
+	$number2 = new \chawuciren\BigNumber('0.00000000000000000001', 20);
+	var_dump($number->lt($number2)); //bool(false)
+
+<br>
