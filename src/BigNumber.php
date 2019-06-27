@@ -109,8 +109,8 @@ class BigNumber
         $this->initCurrentFullClassName();
 
         if (is_object($number) && get_class($number) == $this->currentFullClassName) {
-            $number = $number->toString();
             $this->scale = intval($number->getScale());
+            $number = $number->toString();
         } else if (is_int($number) || is_float($number) || is_double($number) || is_long($number)) {
             $number = strval($number);
         } else if (is_bool($number)) {
