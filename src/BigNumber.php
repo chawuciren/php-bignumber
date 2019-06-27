@@ -4,9 +4,9 @@ namespace chawuciren;
 class BigNumber
 {
     //当前数值的字符串类型
-    protected $numberValue          = '0';
+    protected $numberValue = '0';
     //数值精度
-    protected $numberScale          = 0;
+    protected $numberScale = 0;
     //类名和命名空间
     protected $currentFullClassName = '';
 
@@ -31,9 +31,19 @@ class BigNumber
      *
      * @return null
      */
-    public static function build($number, $scale = null)
+    public static function from($number, $scale = null)
     {
         return new self($number, $scale);
+    }
+
+    /**
+     * @brief 获取当前的数字精度
+     *
+     * @return Int 数字精度
+     */
+    public function getScale()
+    {
+        return $this->numberScale;
     }
 
     /**
@@ -100,6 +110,7 @@ class BigNumber
 
         if (is_object($number) && get_class($number) == $this->currentFullClassName) {
             $number = $number->toString();
+            $this->scale = intval($number->getScale());
         } else if (is_int($number) || is_float($number) || is_double($number) || is_long($number)) {
             $number = strval($number);
         } else if (is_bool($number)) {
