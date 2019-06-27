@@ -31,9 +31,27 @@ class BigNumber
      *
      * @return null
      */
-    public static function from($number, $scale = null)
+    public static function build($number, $scale = null)
     {
         return new self($number, $scale);
+    }
+
+    /**
+     * @brief 检测数据是否BigNumber类型
+     *
+     * @param $number 要检测的数据
+     *
+     * @return Bool
+     */
+    public static function isBigNumber($number)
+    {
+        $currentFullClassName = get_class();
+
+        if (get_class($number) == $currentFullClassName) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -86,18 +104,6 @@ class BigNumber
     }
 
     /**
-     * @brief 初始化成员变量中的完整类名和命名空间
-     *
-     * @return null
-     */
-    public function initCurrentFullClassName()
-    {
-        if (empty($this->currentFullClassName)) {
-            $this->currentFullClassName = get_class();
-        }
-    }
-
-    /**
      * @brief 将传入的number参数转为字符串类型
      *
      * @param $number String/Int/Float/Double/Long/Bool/BigNumber number参数
@@ -106,11 +112,9 @@ class BigNumber
      */
     public function numberToString($number = '0')
     {
-        $this->initCurrentFullClassName();
-
-        if (is_object($number) && get_class($number) == $this->currentFullClassName) {
-            $this->scale = intval($number->getScale());
-            $number = $number->toString();
+        if (is_object($number) && self::isBigNumber($number)) {
+            $this->numberScale = intval($number->getScale());
+            $number            = $number->toString();
         } else if (is_int($number) || is_float($number) || is_double($number) || is_long($number)) {
             $number = strval($number);
         } else if (is_bool($number)) {
