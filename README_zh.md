@@ -2,14 +2,6 @@
 
 ![release](https://img.shields.io/badge/release-0.1.1-green.svg) ![php](https://img.shields.io/badge/php-%3E=5.3-green.svg) ![downloads](https://img.shields.io/badge/downloads-2.29k-green.svg)
 
-<br>
-<br>
-
-[中文文档](./README_zh.md)
-
-<br>
-<br>
-
 ## 关于
 
 PHP 中的整型大小和平台有关，通常最大值是二十亿，64位平台下最大值通常为 9E18，当程序中需要处理的数值超出整形的范围，数值将会被解释为浮点数。
