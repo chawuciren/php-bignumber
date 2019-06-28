@@ -1,6 +1,6 @@
 {
     "name": "chawuciren/bignumber",
-    "description": "PHP BigNumber",
+    "description": "Using a more modern and concise, object-oriented approach, it is more convenient and intuitive to solve the super large number and floating point precision problems in PHP",
     "type": "library",
     "authors": [
         {
