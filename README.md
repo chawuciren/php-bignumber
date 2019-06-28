@@ -2,72 +2,66 @@
 
 ![release](https://img.shields.io/badge/release-0.1.1-green.svg) ![php](https://img.shields.io/badge/php-%3E=5.3-green.svg) ![downloads](https://img.shields.io/badge/downloads-2.29k-green.svg)
 
-<br>
-<br>
+## About
 
 [中文文档](./README_zh.md)
 
-<br>
-<br>
+The integer size in PHP is platform-dependent. The maximum size is usually 2 billion, and the maximum size on 64-bit platforms is usually 9E18.
 
-## 关于
+Floating-point Numbers have limited precision and depend on the system, so never trust floating-point Numbers to be accurate to the last bit, and never compare two floating-point Numbers to be equal.
 
-PHP 中的整型大小和平台有关，通常最大值是二十亿，64位平台下最大值通常为 9E18，当程序中需要处理的数值超出整形的范围，数值将会被解释为浮点数。
+When the business scenario needs to deal with a large range of values or needs to accurately deal with floating point values, arbitrary precision mathematical functions should be used, such as: trading system, e-commerce system, etc.
 
-浮点数的精度有限并取决于系统，所以永远不要相信浮点数结果精确到了最后一位，也永远不要比较两个浮点数是否相等。
-
-当业务场景需要处理的数值范围比较大或者需要精确处理浮点数值时，应该使用任意精度数学函数，如：交易系统、电商系统等。
-
-当前项目是对任意精度数学函数的封装，用于更方便的解决PHP中大数字和浮点数精度问题。
+The current project encapsulates arbitrary precision mathematical functions to make it easier to solve large number and floating point precision problems in PHP.
 
 <br>
 <br>
 
-##  安装方式
+##  Installation
 
-首先请确保你的 PHP 已经安装并支持 BC Math 扩展，如果不支持，具体安装方式参照官网：http://php.net/manual/en/bc.installation.php
+First please make sure your PHP has been installed and the BC Math extension, if not support, specific installation reference website: http://php.net/manual/en/bc.installation.php
 
-查看方式：
+See the way:
 
 	php -info | grep bcmath
 
-如果能够看到输出
+If you can see the output
 
 	bcmath
 	bcmath.scale => 0 => 0
 
-则表示 BC Math 可以使用
+BC Math is available
 
-开始安装：
+Start the installation:
 
-#### 1.安装方式一，通过composer 安装
+#### 1. Way 1: By composer
 
 	composer require chawuciren/bignumber
 
-#### 2.安装方式二，直接下载并 include
+#### 2. Way 2: Directly download and include
 
-直接下载源码，引入 src/BigNumber.php
+Download the source code directly, introducing src/bignumber.php
 
 <br>
 <br>
 
 ## 开始使用
 
-初始化中传入的数值应使用字符串，譬如有一个取出数值并计算后返回给前端的接口，数据库中存储的类型为 decimal 时，应优先将取出的值初始化为 BigNumber，然后在代码中使用 BigNumber 进行计算，后在接口返回处使用：value() 方法获取字符串型的数值输出
+Initialization of the incoming numeric string should be used, such as a out of numerical and later returned to the front interface, the type of stored in the database as a `DECIMAL`, should first initialize the value of the `BigNumber` will be removed, and then used in the code `BigNumber` calculated, after the return to use on interface: value () method for numerical output string
 
-#### 1.方式一：使用 new 语句
+#### 1. Way 1: use new statements
 
     use \chawuciren\BigNumber;
 
 	$number = new BigNumber('0.002', 3);
 
-#### 2.方式二：使用静态方法 build
+#### 2. Way 2: use the static method build
 
     use \chawuciren\BigNumber;
 
 	$number = BigNumber::build('0.002', 3);
 
-#### 3.方式三：使用 valueOf 方法赋值
+#### 3. Way 3: assign values using the valueOf method
 
     use \chawuciren\BigNumber;
 
@@ -77,7 +71,7 @@ PHP 中的整型大小和平台有关，通常最大值是二十亿，64位平�
 <br>
 <br>
 
-## 使用示例
+## Sample
 
     use \chawuciren\BigNumber;
 
@@ -85,25 +79,28 @@ PHP 中的整型大小和平台有关，通常最大值是二十亿，64位平�
     $number->add('0.0004')->sub('1')->mul('4')->div('5');
     var_dump($number->value()); //string(5) "0.0002"
 
+    $number2 = new BigNumber('0.0002');
+    var_dump($number->eq($number2)) //bool true
+
 <br>
 <br>
 
-## 方法列表
+## Methods list
 
 #### 1.valueOf
 
-设置一个值到BigNumber实例中 
+Set a value to the BigNumber instance
 
-##### 参数:
+##### Parameters:
 
-| 参数名 | 类型 | 说明 |
+| Parameter names | Type | Instructions |
 |--|--|--|
 | number | String/BigNumber | 字符串或BigNumber类型的数字 |
 | scale| Int | 数字精度 |
 
-##### 返回值: BigNumber(当前实例)
+##### Return value: BigNumber(Current instance)
 
-##### 示例:
+##### Sample:
 
 	$number = new \chawuciren\BigNumber();
 	$number->valueOf('0.002', 3);
@@ -113,15 +110,15 @@ PHP 中的整型大小和平台有关，通常最大值是二十亿，64位平�
 
 #### 2.toString
 
-以字符串类型返回数值
+Returns a value as a string
 
-##### 参数:
+##### Parameters:
 
 无
 
-##### 返回值: String(当前数值)
+##### Reture value: String(Current value)
 
-##### 示例:
+##### Sample:
 
 	$number = new \chawuciren\BigNumber('0.002', 3);
 	$str = $number->toString();
@@ -129,9 +126,9 @@ PHP 中的整型大小和平台有关，通常最大值是二十亿，64位平�
 
 #### 3.value
 
-以字符串类型返回数值，当前为 toString 方法的别名
+Returns a value of type string, currently an alias of the toString method
 
-##### 示例:
+##### Sample:
 
 	$number = new \chawuciren\BigNumber('0.002', 3);
 	$str = $number->value();
@@ -141,17 +138,17 @@ PHP 中的整型大小和平台有关，通常最大值是二十亿，64位平�
 
 #### 4.add
 
-将当前数值加上传入的number值
+Adds the current value plus the number value passed in
 
-##### 参数:
+##### Parameters:
 
-| 参数名 | 类型 | 说明 |
+| Parameter names | Type | Instructions |
 |--|--|--|
-| number | String/BigNumber | 用于相加的数值 |
+| number | String/BigNumber | The value used to add |
 
-##### 返回值: BigNumber(当前实例)
+##### Reture value: BigNumber(Current instance)
 
-##### 示例:
+##### Sample:
 
 	$number = new \chawuciren\BigNumber('0.002', 3);
 	$number->add('0.003');
@@ -161,17 +158,17 @@ PHP 中的整型大小和平台有关，通常最大值是二十亿，64位平�
 
 #### 5.sub
 
-将当前数值减去传入的number值
+Subtracts the current value from the number value passed in
 
-##### 参数:
+##### Parameters:
 
-| 参数名 | 类型 | 说明 |
+| Parameter names | Type | Instructions |
 |--|--|--|
-| number | String/BigNumber | 用于相减的数值 |
+| number | String/BigNumber | The value used to subtract |
 
-##### 返回值: BigNumber(当前实例)
+##### Reture value: BigNumber(Current instance)
 
-##### 示例:
+##### Sample:
 
 	$number = new \chawuciren\BigNumber('0.002', 3);
 	$number->sub('0.001');
@@ -181,17 +178,17 @@ PHP 中的整型大小和平台有关，通常最大值是二十亿，64位平�
 
 #### 6.mul
 
-将当前数值乘以传入的number值
+Multiply the current value by the number value passed in
 
-##### 参数:
+##### Parameters:
 
-| 参数名 | 类型 | 说明 |
+| Parameter names | Type | Instructions |
 |--|--|--|
-| number | String/BigNumber | 用于相乘的数值 |
+| number | String/BigNumber | The number used to multiply |
 
-##### 返回值: BigNumber(当前实例)
+##### Reture value: BigNumber(Current instance)
 
-##### 示例:
+##### Sample:
 
 	$number = new \chawuciren\BigNumber('0.002', 3);
 	$number->sub('0.001');
@@ -201,17 +198,17 @@ PHP 中的整型大小和平台有关，通常最大值是二十亿，64位平�
 
 #### 7.div
 
-将当前数值除以传入的number值
+Divide the current value by the number value passed in
 
-##### 参数:
+##### Parameters:
 
-| 参数名 | 类型 | 说明 |
+| Parameter names | Type | Instructions |
 |--|--|--|
-| number | String/BigNumber | 将当前数值除以传入的number值 |
+| number | String/BigNumber | Divide the current value by the number value passed in |
 
-##### 返回值: BigNumber(当前实例)
+##### Reture value: BigNumber(Current instance)
 
-##### 示例:
+##### Sample:
 
 	$number = new \chawuciren\BigNumber('0.002', 3);
 	$number->div('2');
@@ -221,17 +218,17 @@ PHP 中的整型大小和平台有关，通常最大值是二十亿，64位平�
 
 #### 8.mod
 
-将当前数值用传入的number值取模
+Modulates the current value with the number value passed in
 
-##### 参数:
+##### Parameters:
 
-| 参数名 | 类型 | 说明 |
+| Parameter names | Type | Instructions |
 |--|--|--|
-| number | String/BigNumber | 用于取模的数值 |
+| number | String/BigNumber | The value used to take a modulus |
 
-##### 返回值: BigNumber(当前实例)
+##### Reture value: BigNumber(Current instance)
 
-##### 示例:
+##### Sample:
 
 	$number = new \chawuciren\BigNumber('108');
 	$number->mod('10');
@@ -241,17 +238,17 @@ PHP 中的整型大小和平台有关，通常最大值是二十亿，64位平�
 
 #### 9.pow
 
-取当前数值的number次方
+Take the current value to the number power
 
-##### 参数:
+##### Parameters:
 
-| 参数名 | 类型 | 说明 |
+| Parameter names | Type | Instructions |
 |--|--|--|
-| number | String/BigNumber | 乘方的数值 |
+| number | String/BigNumber | The number of powers |
 
-##### 返回值: BigNumber(当前实例)
+##### Reture value: BigNumber(Current instance)
 
-##### 示例:
+##### Sample:
 
 	$number = new \chawuciren\BigNumber('2');
 	$number->pow('2');
@@ -261,15 +258,15 @@ PHP 中的整型大小和平台有关，通常最大值是二十亿，64位平�
 
 #### 10.sqrt
 
-取当前数值的平方根
+Take the square root of the current value
 
-##### 参数:
+##### Parameters:
 
 无
 
-##### 返回值: BigNumber(当前实例)
+##### Reture value: BigNumber(Current instance)
 
-##### 示例:
+##### Sample:
 
 	$number = new \chawuciren\BigNumber('16');
 	$number->sqrt();
@@ -279,18 +276,18 @@ PHP 中的整型大小和平台有关，通常最大值是二十亿，64位平�
 
 #### 11.eq
 
-判断当前数值是否等于number值
+Determine whether the current value equals the value of number
 
-##### 参数:
+##### Parameters:
 
-| 参数名 | 类型 | 说明 |
+| Parameter names | Type | Instructions |
 |--|--|--|
-| number | String/BigNumber | 参与判断的右值 |
+| number | String/BigNumber | The rvalue participating in the judgment |
 
 
-##### 返回值: Bool (true:相等; false:不相等)
+##### Reture value: Bool (True: equal; False: no equal)
 
-##### 示例:
+##### Sample:
 
 	$number = new \chawuciren\BigNumber('0.00000000000000000001', 20);
 	$number2 = new \chawuciren\BigNumber('0.00000000000000000001', 20);
@@ -300,18 +297,18 @@ PHP 中的整型大小和平台有关，通常最大值是二十亿，64位平�
 
 #### 12.gt
 
-判断当前数值是否大于number值
+Determine whether the current value is greater than the number value
 
-##### 参数:
+##### Parameters:
 
-| 参数名 | 类型 | 说明 |
+| Parameter names | Type | Instructions |
 |--|--|--|
-| number | String/BigNumber | 参与判断的右值 |
+| number | String/BigNumber | The rvalue participating in the judgment |
 
 
-##### 返回值: Bool (true:大于; false:不大于)
+##### Reture value: Bool (True: greater than; False: no more than)
 
-##### 示例:
+##### Sample:
 
 	$number = new \chawuciren\BigNumber('0.00000000000000000002', 20);
 	$number2 = new \chawuciren\BigNumber('0.00000000000000000001', 20);
@@ -321,18 +318,18 @@ PHP 中的整型大小和平台有关，通常最大值是二十亿，64位平�
 
 #### 13.egt
 
-判断当前数值是否大于或等于number值
+Determine whether the current value is greater than or equal to the number value
 
-##### 参数:
+##### Parameters:
 
-| 参数名 | 类型 | 说明 |
+| Parameter names | Type | Instructions |
 |--|--|--|
-| number | String/BigNumber | 参与判断的右值 |
+| number | String/BigNumber | The rvalue participating in the judgment |
 
 
-##### 返回值: Bool (true:大于或等于; false:不大于且不等于)
+##### Reture value: Bool (True: greater than or equal to; False: not greater than and not equal to)
 
-##### 示例:
+##### Sample:
 
 	$number = new \chawuciren\BigNumber('0.00000000000000000002', 20);
 	$number2 = new \chawuciren\BigNumber('0.00000000000000000001', 20);
@@ -342,18 +339,18 @@ PHP 中的整型大小和平台有关，通常最大值是二十亿，64位平�
 
 #### 14.lt
 
-判断当前数值是否小于number值
+Determine whether the current value is less than the number value
 
-##### 参数:
+##### Parameters:
 
-| 参数名 | 类型 | 说明 |
+| Parameter names | Type | Instructions |
 |--|--|--|
-| number | String/BigNumber | 参与判断的右值 |
+| number | String/BigNumber | The rvalue participating in the judgment |
 
 
-##### 返回值: Bool (true:小于; false:不小于)
+##### Reture value: Bool (True: less than; False: no less than)
 
-##### 示例:
+##### Sample:
 
 	$number = new \chawuciren\BigNumber('0.00000000000000000002', 20);
 	$number2 = new \chawuciren\BigNumber('0.00000000000000000001', 20);
@@ -363,18 +360,18 @@ PHP 中的整型大小和平台有关，通常最大值是二十亿，64位平�
 
 #### 15.elt
 
-判断当前数值是否小于或等于number值
+Determine whether the current value is less than or equal to the value of number
 
-##### 参数:
+##### Parameters:
 
-| 参数名 | 类型 | 说明 |
+| Parameter names | Type | Instructions |
 |--|--|--|
-| number | String/BigNumber | 参与判断的右值 |
+| number | String/BigNumber |  The rvalue participating in the judgment |
 
 
-##### 返回值: Bool (true:小于或等于; false:不小于且不等于)
+##### Reture value: Bool (True: less than or equal to; False: not less than and not equal to)
 
-##### 示例:
+##### Sample:
 
 	$number = new \chawuciren\BigNumber('0.00000000000000000002', 20);
 	$number2 = new \chawuciren\BigNumber('0.00000000000000000001', 20);
