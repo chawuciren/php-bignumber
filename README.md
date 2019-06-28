@@ -95,8 +95,8 @@ Set a value to the BigNumber instance
 
 | Parameter names | Type | Instructions |
 |--|--|--|
-| number | String/BigNumber | 字符串或BigNumber类型的数字 |
-| scale| Int | 数字精度 |
+| number | String/BigNumber | A string or number of type BigNumber |
+| scale| Int | Precision of number |
 
 ##### Return value: BigNumber(Current instance)
 
