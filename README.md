@@ -45,7 +45,7 @@ Download the source code directly, introducing src/bignumber.php
 <br>
 <br>
 
-## 开始使用
+## Begin to use
 
 Initialization of the incoming numeric string should be used, such as a out of numerical and later returned to the front interface, the type of stored in the database as a `DECIMAL`, should first initialize the value of the `BigNumber` will be removed, and then used in the code `BigNumber` calculated, after the return to use on interface: value () method for numerical output string
 
@@ -114,7 +114,7 @@ Returns a value as a string
 
 ##### Parameters:
 
-无
+No parameters
 
 ##### Reture value: String(Current value)
 
@@ -262,7 +262,7 @@ Take the square root of the current value
 
 ##### Parameters:
 
-无
+No parameters
 
 ##### Reture value: BigNumber(Current instance)
 
