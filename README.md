@@ -49,16 +49,33 @@ PHP 中的整型大小和平台有关，通常最大值是二十亿，64位平�
 
 #### 1.方式一：使用 new 语句
 
-	$number = new \chawuciren\BigNumber('0.002', 3);
+    use \chawuciren\BigNumber;
+
+	$number = new BigNumber('0.002', 3);
 
 #### 2.方式二：使用静态方法 build
 
-	$number = \chawuciren\BigNumber::build('0.002', 3);
+    use \chawuciren\BigNumber;
+
+	$number = BigNumber::build('0.002', 3);
 
 #### 3.方式三：使用 valueOf 方法赋值
 
-	$number = new \chawuciren\BigNumber();
+    use \chawuciren\BigNumber;
+
+	$number = new BigNumber();
 	$number->valueOf('0.002', 3);
+
+<br>
+<br>
+
+## 使用示例
+
+    use \chawuciren\BigNumber;
+
+	$number = new BigNumber('1.0001', 4);
+    $number->add('0.0004')->sub('1')->mul('4')->div('5');
+    var_dump($number->value()); //string(5) "0.0002"
 
 <br>
 <br>
@@ -189,7 +206,7 @@ PHP 中的整型大小和平台有关，通常最大值是二十亿，64位平�
 ##### 示例:
 
 	$number = new \chawuciren\BigNumber('0.002', 3);
-	$number->dev('2');
+	$number->div('2');
 	var_dump($number->value()); //string(5) "0.001"
 
 <br>
