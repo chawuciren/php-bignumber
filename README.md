@@ -1,6 +1,6 @@
 ### php-bignumber
 
-![release](https://img.shields.io/badge/release-0.1.1-green.svg) ![php](https://img.shields.io/badge/php-%3E=5.3-green.svg) ![downloads](https://img.shields.io/badge/downloads-2.29k-green.svg)
+![release](https://img.shields.io/badge/release-1.0.1-green.svg) ![php](https://img.shields.io/badge/php-%3E=5.3-green.svg) ![downloads](https://img.shields.io/badge/downloads-3.35k-green.svg)
 
 ## About
 
